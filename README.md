@@ -33,21 +33,21 @@ python PCsampling.py
 ```
 
 ## Graphical representation
-### The whole pipeline of GLDM is illustrated in Fig1
-<div align="center"><img src="https://github.com/yqx7150/GLDM/blob/main/Fig1.png" >  </div>
-The schematic of the proposed GLDM algorithm. Red and blue parts represent the training stage that fully encoded full-resolution reference data is constructed through a time-interleaved acquisition scheme. Red part merges all time frames to train the global model (GM) while the blue part merges local time frames to train the local model (LM). Green part represents the reconstruction stage which the structure of the reconstruction model exists in a cascade form and the under-sampled k-space data (16 frames) are sequentially input into the network. At the same time, optimization unit (OU) containing a LR operator and a DC term is introduced to better remove aliasing and restore details
+### The histogram distribution of the real and imaginary parts of various k-space data in Fig1
+<div align="center"><img src="https://github.com/yqx7150/DMSE/blob/main/Fig1.png" >  </div>
+Histogram distribution of the real and imaginary parts of various k-space data. Among them, first and middle rows display the distribution of target data and measurement, respectively, while the last row illustrates the distribution of the constructed subset-k-space. Note that the red circles serve to highlight areas of pronounced disparity.
 
-### Time-interleaved acquisition scheme is visualized in Fig2.
-<div align="center"><img src="https://github.com/yqx7150/GLDM/blob/main/Fig2.png" >  </div>
-The core of the approach is to construct a complete k-space dataset by merging any number of adjacent time frames. In the above example, two different under-sampled patterns (uniform and random) at 5-fold acceleration are acquired via a time-interleaved acquisition scheme.
+### The schematic diagram of the construction of the novel distribution in Fig2.
+<div align="center"><img src="https://github.com/yqx7150/DMSE/blob/main/Fig2.png" >  </div>
+Schematic diagram of the construction of the novel distribution. Stage-1: Fusion of the subset-k-space of multi-contrast data to con-struct a new distribution. Stage-2: Embedding the under-sampled target itself as the global prior operator to form a high-dimensional tensor.
 
-### The time-interleaved acquisition scheme of 4 frames of dynamic MRI is visualized in Fig3.
-<div align="center"><img src="https://github.com/yqx7150/GLDM/blob/main/Fig3.png" >  </div>
-The ACS of each frame remains unaltered, while the remainder of the area is filled with data from adjacent frames. The distinct colors rep-resent data contributions from different frames
+### The Overview of the DMSE procedure for MC-MRI reconstruction in Fig3.
+<div align="center"><img src="https://github.com/yqx7150/DMSE/blob/main/Fig3.png" >  </div>
+Overview of the DMSE procedure for MC-MRI reconstruction. Training phase intuitively visualizes the dynamic process of how the data dis-tribution gradually changes as the diffusion process continues. It is evident that the data distribution is complex while the noise follows a sim-ple Gaussian distribution. Reconstruction process is refined into three modules including predictor-corrector sampler, data consistency block and low-rank constraint unit, all of which occur in each iteration of the diffusion process.
 
 ###  Convergence curves of PSNR and MSE of GLDM and the number of iterations
-<div align="center"><img src="https://github.com/yqx7150/GLDM/blob/main/Fig4.png" >  </div>
-Convergence curves of PSNR and MSE of GLDM and the number of iterations
+<div align="center"><img src="https://github.com/yqx7150/DMSE/blob/main/Fig4.png" >  </div>
+The trade-off between image quality vs. iteration steps for three manners for reconstruction T2WI. Sampling scheme used for this experiment is 2D Random sampling pattern with acceleration factor R=6.
 
 ## Other Related Projects    
   * Homotopic Gradients of Generative Density Priors for MR Image Reconstruction  
